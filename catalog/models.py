@@ -34,7 +34,6 @@ class Product(models.Model):
     country = models.CharField(choices=COUNTRY, verbose_name='Страна производства', **NULLABLE)
     created_at = models.DateField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateField(auto_now=True, verbose_name='Дата изменения')
-    manufactured_at = models.DateField(verbose_name='Дата производства продукта', **NULLABLE)
 
     def __str__(self):
         return f'{self.name} {self.in_stock}'
