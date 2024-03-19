@@ -20,9 +20,9 @@ class Category(models.Model):
 
 class Product(models.Model):
     COUNTRY = [
-        (1, 'Россия'),
-        (2, 'Беларусь'),
-        (3, 'Китай'),
+        ('1', 'Россия'),
+        ('2', 'Беларусь'),
+        ('3', 'Китай'),
     ]
 
     name = models.CharField(max_length=100, verbose_name='Продукт')
@@ -41,4 +41,4 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'продукт'
         verbose_name_plural = 'продукты'
-        ordering = ('name', 'price',)
+        ordering = ('name', 'category', 'price',)
