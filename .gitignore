@@ -24,7 +24,9 @@ __pycache__/
 
 ##  My ignore
 /work/
+#/media/products_image/
 
 w_*.py
+w_*.html
 
 venv/
