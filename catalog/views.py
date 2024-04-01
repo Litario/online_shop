@@ -39,8 +39,10 @@ def category_products(request, pk):
 def product(request, pk):
     # product_item = Product.objects.get(pk=pk)
     prod = Product.objects.get(pk=pk)
+    country_made = dict(Product.COUNTRY).get(str(prod.country))
     context = {
         'object': prod,
+        'country': country_made,
         'title_1': f'{prod.name}',
         'title_2': f'категория {prod.category}',
     }
