@@ -1,0 +1,17 @@
+<div class="col-3">
+    <div class="card mb-5 box-shadow">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">{{ object.name }}</h4>
+        </div>
+        <div class="card-body">
+            <!-- "данный код работает без атрибута <related_name> в модели"-->
+            <!-- <h4 class="card-title pricing-card-title">{{ object.product_set.all | length }}</h4>-->
+            <h4 class="card-title pricing-card-title">{{ object.product_of_category.all | length }}</h4>
+            <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                <li>{{ object.description }}</li>
+            </ul>
+            <a href="{% url 'catalog:category_products' object.pk %}" type="button"
+               class="btn btn-lg btn-block btn-outline-primary">Перейти</a>
+        </div>
+    </div>
+</div>
