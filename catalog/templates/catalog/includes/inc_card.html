@@ -6,10 +6,10 @@
         <div class="card-body">
             <!-- "данный код работает без атрибута <related_name> в модели"-->
             <!-- <h4 class="card-title pricing-card-title">{{ object.product_set.all | length }}</h4>-->
-            <h5 class="card-title pricing-card-title">{{ object.product_of_category.all | length }}
-                товаров в категории</h5>
+            <h4 class="card-title pricing-card-title">{{ object.product_of_category.all | length }} </h4>
+            <p class="mb-4 text-muted"> (кол-во товаров в категории) </p>
             <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                <li>{{ object.description | truncatechars:50 }}</li>
+                <li>{{ object.description | truncatechars:100 }}</li>
             </ul>
             <a href="{% url 'catalog:category_products' object.pk %}" type="button"
                class="btn btn-lg btn-block btn-outline-primary">Перейти</a>
