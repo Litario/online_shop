@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, TemplateView
 
@@ -5,6 +6,7 @@ from catalog.models import Category, Product
 
 
 # Create your views here.
+
 # def home(request):
 #     ctgs = Category.objects.all()[:4]
 #     context = {
@@ -17,6 +19,7 @@ from catalog.models import Category, Product
 
 class HomeListView(ListView):
     model = Category
+    template_name = 'catalog/home.html'
     extra_context = {
         'title_1': 'MyShop',
         'title_2': 'MyShop - это просто еще один онлайн магазин. Не более того.',
@@ -27,10 +30,10 @@ class HomeListView(ListView):
         context_data['object_list'] = Category.objects.all()[:3]
         return context_data
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        queryset = queryset[:3]
-        return queryset
+    # def get_queryset(self):
+    #     queryset = super().get_queryset()
+    #     queryset = queryset[:3]
+    #     return queryset
 
 
 # def categories(request):
@@ -121,4 +124,14 @@ def contacts(request):
         print(f"{name} ({phone})  {message}")
     return render(request, "catalog/contacts.html")
 
-# class ContactsTemplateView(TemplateView):
+
+class ContactsTemplateView(TemplateView):
+    template_name = 'catalog/contacts.html'
+
+    def post(self, request, *args, **kwargs):
+        name = request.POST.get('name')
+        phone = request.POST.get('phone')
+        message = request.POST.get('message')
+        print(f"{name} ({phone})  {message}")
+
+        return HttpResponseRedirect('/contacts/')
