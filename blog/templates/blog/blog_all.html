@@ -21,8 +21,14 @@
             <!-- <h4 class="card-title pricing-card-title">{{ object.product_set.all | length }}</h4>-->
             <h4 class="card-title pricing-card-title">{{ object.views_count }} </h4>
             <p class="mb-4 text-muted"> (кол-во просмотров) </p>
-            <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                <li>{{ object.body | truncatechars:50 }}</li>
+            <ul class="list-unstyled mt-3 mb-4 text-center m-3">
+                <li>
+                    {% if object.is_published %}
+                    Опубликовано
+                    {% else %}
+                    Не опубликовано
+                    {% endif %}
+                </li>
             </ul>
             <a href="{% url 'blog:detail_blog' object.pk %}" type="button"
                class="btn btn-md btn-block btn-outline-secondary">Перейти</a>

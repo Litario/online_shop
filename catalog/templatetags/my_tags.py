@@ -7,4 +7,4 @@ register = template.Library()
 def media_filter(value):
     if value:
         return f"/media/{value}"
-    return "#"
+    return f"/media/plug_img.jpg"
