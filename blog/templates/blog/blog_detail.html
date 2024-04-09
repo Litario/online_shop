@@ -1,0 +1,43 @@
+{% extends 'catalog/base.html' %}
+{% load my_tags %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center">
+    <div class="card m-auto mb-5 box-shadow" style="width: 75%">
+        <div class="card-header p-2">
+            <h4 class="my-0 font-weight-normal">{{ object.name }}</h4>
+        </div>
+        <div class="card-body">
+            <!--        <img src="/media/{{ object.img }}" class="img-fluid" alt="...">-->
+            <img src="{{ object.preview | media_filter }}" class="rounded img-fluid" alt="...">
+            <!--            <h4 class="card-title pricing-card-title">{{ object.price }} руб </h4>-->
+            <ul class="list-unstyled mt-3 mb-1 text-start m-3">
+                <li>{{ object.body }}</li>
+                <br>
+                <p class="mt-4 mb-1 text-muted">
+                    {% if object.is_published %}
+                    опубликовано
+                    {% else %}
+                    не опубликовано
+                    {% endif %}
+                    <br>
+                    количество просмотров: {{ object.views_count }}
+                </p>
+            </ul>
+        </div>
+        <div class="row text-start">
+            <div class="col-12 mt-4">
+                <div class="card-footer p-3">
+                    <a href="{% url 'blog:update_blog' object.pk %}" type="button"
+                       class="btn btn-md btn-block btn-outline-warning">Редактировать</a>
+                    <a href="{% url 'blog:delete_blog' object.pk %}" type="button"
+                       class="btn btn-md btn-block btn-outline-danger">Удалить</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

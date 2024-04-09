@@ -1,0 +1,34 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row text-end">
+        <div class="col-12 mb-4">
+            <a class="btn btn-secondary" href="{% url 'blog:create_blog' %}">Добавить блог</a>
+        </div>
+    </div>
+</div>
+
+{% for object in object_list %}
+<div class="col-3">
+    <div class="card mb-5 box-shadow">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">{{ object.slug }}</h4>
+        </div>
+        <div class="card-body">
+            <!-- "данный код работает без атрибута <related_name> в модели"-->
+            <!-- <h4 class="card-title pricing-card-title">{{ object.product_set.all | length }}</h4>-->
+            <h4 class="card-title pricing-card-title">{{ object.views_count }} </h4>
+            <p class="mb-4 text-muted"> (кол-во просмотров) </p>
+            <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                <li>{{ object.body | truncatechars:50 }}</li>
+            </ul>
+            <a href="{% url 'blog:detail_blog' object.pk %}" type="button"
+               class="btn btn-md btn-block btn-outline-secondary">Перейти</a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
